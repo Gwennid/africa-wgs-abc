@@ -4,3 +4,4 @@ This folder contains the code used for simulating genetic data under a continuou
 
 - [ ] Add the different files
 - [ ] Describe the different types of files
+- [ ] Find the files with vectors of parameters
