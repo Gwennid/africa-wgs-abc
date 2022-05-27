@@ -2,9 +2,7 @@
 
 We simulated genetic datasets with fastsimcoal2 (Excoffier and Foll, [2011](https://doi.org/10.1093/bioinformatics/btr124), Excoffier et al., [2013](https://doi.org/10.1371/journal.pgen.1003905)). The genetic model was based on the model in (Jay et al., [2019](https://doi.org/10.1093/molbev/msz038)).
 
-Vectors of parameters were generated with a custom Python script.
-
-The templates (.tpl) as well as the vectors of parameters for each model are in the subfolder "continuous" and "pulse".
+Vectors of parameters were generated with a custom Python script. For each simulation, a fastsimcoal input file (.est) was created by taking the values in a vector and replace the placeholders in the template .est file. The resulting .est file was fed to fastsimcoal together with the template (.tpl) file. The .tpl files, the templates .est, as well as the vectors of parameters for each model are in the subfolder `continuous` and `pulse`.
 
 The outputs from fastsimcoal, in .arp format, were converted to plink TPED format and to a set of Python objects in order to calculate summary statistics. This is done with script `xxx`.
 
