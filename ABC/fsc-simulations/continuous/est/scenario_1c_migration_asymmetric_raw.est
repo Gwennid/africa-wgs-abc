@@ -1,0 +1,43 @@
+[PARAMETERS]
+1 NNK unif 20 200000 output 
+1 NSK unif 20 200000 output 
+1 NWP unif 20 200000 output 
+1 NEP unif 20 200000 output 
+1 NNP unif 20 200000 output 
+1 TK1 unif 1 15000 output 
+1 TP1 unif 1 15000 output 
+1 TPNP unif 1 15000 output 
+1 TKPNP unif 1 15000 ouput 
+1 NAK unif 20 200000 output 
+1 NAP unif 20 200000 output 
+1 NA1PNP unif 20 200000 output 
+1 ANA unif 20 200000 output 
+0 MNKSK unif 0 0.05 output 
+0 MSKNK unif 0 0.05 output 
+0 MNKNP unif 0 0.05 output 
+0 MNPNK unif 0 0.05 output 
+0 MSKNP unif 0 0.05 output 
+0 MNPSK unif 0 0.05 output 
+0 MWPEP unif 0 0.05 output 
+0 MEPWP unif 0 0.05 output 
+0 MWPNP unif 0 0.05 output 
+0 MNPWP unif 0 0.05 output 
+0 MEPNP unif 0 0.05 output 
+0 MNPEP unif 0 0.05 output 
+0 MNP1AP unif 0 0.05 output 
+0 MAP1NP unif 0 0.05 output 
+0 MAPNPNK unif 0 0.05 output 
+0 MNKAPNP unif 0 0.05 output 
+0 MAPNPSK unif 0 0.05 output 
+0 MSKAPNP unif 0 0.05 output 
+0 MAKAPNP unif 0 0.05 output 
+0 MAPNPAK unif 0 0.05 output 
+[RULES]
+TK1<TKPNP
+TPNP<TK1
+TP1<TPNP
+[COMPLEX PARAMETERS]
+0 FANK = NAK/NNK output 
+0 FANP = NAP/NWP output 
+0 FAN1PNP = NA1PNP/NAP output 
+0 FAN1KPNP = ANA/NAK output 
