@@ -1,0 +1,79 @@
+// Priors and rules file
+// *********************
+[PARAMETERS]
+//#isInt? #name #dist. #min #max
+//all N are in number of haploid individuals
+// present Ne sizes
+1 NNK unif 20 200000 output //NK 0
+1 NSK unif 20 200000 output //SK 1
+1 NWP unif 20 200000 output //WP 2
+1 NEP unif 20 200000 output //EP 3
+1 NNP unif 20 200000 output //NP 4
+// ancient Ne sizes K_P_NP
+1 NAK unif 20 200000 output // Ancient Common K
+1 NAP unif 20 200000 output // Ancient Common P
+1 NA1KNP unif 20 200000 output // Ancient Common KNP
+1 ANA unif 20 200000 output // Ancient Common K-P-NP
+// time split events 30 y generations
+1 TK1 unif 1 15000 output // Split K north-south
+1 TP1 unif 1 15000 output // Split P east-west
+1 TKNP unif 1 15000 output // Split K-NP
+1 TKPNP unif 1 15000 ouput // Split K-NP-P
+// tk < tknp < tp < tpknp
+// time recent admixture events 30 y generations
+1 TADNKSK unif 1 15000 output // Admixture NK - SK
+1 TADNKNP unif 1 15000 output // Admixture NK - NP
+1 TADSKNP unif 1 15000 output // Admixture SK - NP
+1 TADNPWP unif 1 15000 output // Admixture WP - NP
+1 TADNPEP unif 1 15000 output // Admixture EP - NP
+1 TADWPEP unif 1 15000 output // Admixture WP - EP
+// time ancient admixture events 30 y generations
+1 TADAKNP unif 1 15000 output // Ancient Admixture aK - NP
+1 TADWPAKNP unif 1 15000 output // Ancient Admixture WP - aKNP
+1 TADEPAKNP unif 1 15000 output // Ancient Admixture EP - aKNP
+1 TADAPAKNP unif 1 15000 output // Ancient Admixture aP - aKNP
+// intensities recent admixture events 30 y generations
+0 RNKSK unif 0 1 output // Rate Admixture NK -> SK
+0 RSKNK unif 0 1 output // Rate Admixture SK -> NK
+0 RNKNP unif 0 1 output // Rate Admixture NK -> NP
+0 RNPNK unif 0 1 output // Rate Admixture NP -> NK
+0 RSKNP unif 0 1 output // Rate Admixture SK -> NP
+0 RNPSK unif 0 1 output // Rate Admixture NP -> SK
+0 RNPWP unif 0 1 output // Rate Admixture NP -> WP
+0 RWPNP unif 0 1 output // Rate Admixture WP -> NP
+0 RNPEP unif 0 1 output // Rate Admixture NP -> EP
+0 REPNP unif 0 1 output // Rate Admixture EP -> NP
+0 RWPEP unif 0 1 output // Rate Admixture WP -> EP
+0 REPWP unif 0 1 output // Rate Admixture EP -> WP
+// intensities ancient admixture events 30 y generations
+0 RNP1AK unif 0 1 output // Rate Admixture NP -> AK
+0 RAK1NP unif 0 1 output // Rate Admixture AK -> NP
+0 RAKNPWP unif 0 1 output // Rate Admixture AKNP -> WP
+0 RWPAKNP unif 0 1 output // Rate Admixture WP -> AKNP
+0 RAKNPEP unif 0 1 output // Rate Admixture AKNP -> EP
+0 REPAKNP unif 0 1 output // Rate Admixture EP -> AKNP
+0 RAP1AKNP unif 0 1 output // Rate Admixture AP -> AKNP
+0 R1AKNPAP unif 0 1 output // Rate Admixture AKNP -> AP
+[RULES]
+TP1<TKPNP
+TKNP<TP1
+TK1<TKNP
+TADNKSK<TK1
+TADNKNP<TK1
+TADSKNP<TK1
+TADNPWP<TKNP
+TADNPEP<TKNP
+TADWPEP<TP1
+TADAKNP<TKNP
+TK1<TADAKNP
+TADWPAKNP<TP1 
+TKNP<TADWPAKNP 
+TADEPAKNP<TP1 
+TKNP<TADEPAKNP 
+TADAPAKNP<TKPNP 
+TP1<TADAPAKNP 
+[COMPLEX PARAMETERS]
+0 FANK = NAK/NNK output // Factor Ne Ancient Common K
+0 FANP = NAP/NWP output // Factor Ne Ancient Common P
+0 FAN1KNP = NA1KNP/NAK output // Factor Ne Ancient Common PNP
+0 FAN1KPNP = ANA/NA1KNP output // Factor Ne Ancient Common K-P-NP
