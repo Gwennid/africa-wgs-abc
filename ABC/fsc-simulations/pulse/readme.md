@@ -1,1 +1,5 @@
-This folder contains the code used for simulating genetic data under a migration model with pulses.
+This folder contains the code used for simulating genetic data under a migration model with pulses. The folders are as follow:
+
+- `def`: the three subfolders `high`, `intermediate` and `low` contain files with vectors of parameters (population size, migration rates etc). Each row corresponds to a simulation. `high` corresponds to migration rates in [0,1]; `intermediate` in [0,0.25]; and `low` in [0,0.01]. The `.def_header` files contain the header row of the `.def` and are identical across migration intensity. Moreover, the `high` folder contains a subfolder for the `model-choice` simulations (eight scenarios) and a subfolder for the `parameter-estimation` simulations (two of the eight scenarios used for model choice).
+- `est`: these files are given as an example. They contain, for each parameter, information on the prior distribution (for example uniform distribution between 20 and 20000 for population size). These were not used in the simulations.
+- `tpl`: these files contains the genetic architecture and demographic model used by fastsimcoal. They are combined with a vector from the `.def` to simulate data.
