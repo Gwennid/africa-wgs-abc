@@ -11,8 +11,6 @@ Summary statistics were calculated with plink (Purcell et al., [2007](https://do
 The full code needed to perform one or several simulations is present in `code/ABC_simul_modelchoice_April2021_pipeline_top.sh` and `code/ABC_simul_modelchoice_Feb2020_pipeline_bottom_20200514_USINGSCRATCH.sh`. The three placeholders `SCENARIO`, `START` and `TO` should be replaced (using sed for example). An example of values is: `scenario_1a_migration_asymmetric_0-0.001`, `1` and `500`.
 In the working directory, the subfolder `code` should be copied. A directory called `models_and_parameters_sets` should be created, containing the following three files for each scenario of choice: `_raw.tpl`, `.def` and `.def_header`. Preferably the prefix of these three files should be identical. Moreover, the following directories should be created to contain the outputs: `output/ASD`, `output/ASDsumstats`, `output/sumstats`
 
-#TODO if not done in the ms: explain the strategy with the reruns.
-
 ## TODO
 
 - [ ] Include: custom Python script to generate vectors of parameters (do I have it?)
@@ -20,3 +18,4 @@ In the working directory, the subfolder `code` should be copied. A directory cal
 - [x] Example of script to perform the full simulation?
 - [ ] What else?
 - [ ] When is output/ref_tables used?
+- [ ] If not done in the ms: explain the strategy with the reruns.
