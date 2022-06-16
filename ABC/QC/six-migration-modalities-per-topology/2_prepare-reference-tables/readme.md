@@ -15,3 +15,9 @@ For example in this case, we are interested in comparing the pulse and the conti
 The reference tables at this stage are found [here](../3_reference-tables/).
 
 - [ ] Decide whether it is a good idea to include these reference tables, or whether I should not include them at all, or the tables used for model choice (if someome wants to reproduce model choice).
+
+## Step 3: Modify files for use with the R abcrf package
+
+Cf the example for another QC [here](../pulse-VS-continuous-all-param-equal-low-mig/2_prepare-reference-tables/20210521_Prepare_inputs_for_modelchoice_QC_constant_parameters.R).
+
+Parameter `nbSim` was set to `5000` and parameter `nbModels` was set to `6`.
