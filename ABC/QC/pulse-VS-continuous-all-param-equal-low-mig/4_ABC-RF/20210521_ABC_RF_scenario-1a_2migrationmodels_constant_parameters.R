@@ -251,13 +251,13 @@ dev.off()
 ###########
 
 dataX2<- data.frame(modindex2,ReSsumstat2)
-# modelTest2 <- abcrf(modindex2~., data = dataX2, ntree=1000, lda=FALSE, paral = TRUE, ncores = 8 , sampsize=nbModels*nbSim)
+modelTest2 <- abcrf(modindex2~., data = dataX2, ntree=1000, lda=FALSE, paral = TRUE, ncores = 8 , sampsize=nbModels*nbSim)
 nbsumstat2 = length(colnames(ReSsumstat2)) #309
 
-# png(file="ABC-RF-constant-1a_1000repeats/sumstats_importance_309sumstats_6Mod.png"); plot(modelTest2, dataX2, n.var=nbsumstat2, cex=0.5, pch=1); dev.off()
-# png(file="ABC-RF-constant-1a_1000repeats/sumstats_importance_309sumstats_6Mod_TOP50.png"); plot(modelTest2, dataX2, n.var=50, cex=0.5, pch=1); dev.off()
-# 
-# modelTest2
+png(file="ABC-RF-constant-1a_1000repeats/sumstats_importance_309sumstats_6Mod.png"); plot(modelTest2, dataX2, n.var=nbsumstat2, cex=0.5, pch=1); dev.off()
+png(file="ABC-RF-constant-1a_1000repeats/sumstats_importance_309sumstats_6Mod_TOP50.png"); plot(modelTest2, dataX2, n.var=50, cex=0.5, pch=1); dev.off()
+
+modelTest2
 # Call:
 #   abcrf(formula = modindex2 ~ ., data = dataX2, lda = FALSE, ntree = 1000, sampsize = nbModels * nbSim, paral = TRUE, ncores = 8) 
 # Number of simulations: 2000
