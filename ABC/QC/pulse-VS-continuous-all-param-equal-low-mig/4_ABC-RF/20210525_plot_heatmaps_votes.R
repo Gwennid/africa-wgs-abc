@@ -12,7 +12,8 @@ library(RColorBrewer)
 ###
 
 data <- read.table(file="ABC-RF-constant-1a_1000repeats/confusionmatrix_2Groups.txt",header=TRUE) #Replace input file.
-#The input file is created manually (see example) from the output of the following command: "modelTest2 <- abcrf(modindex2~., data = dataX2, ntree=1000, lda=FALSE, paral = TRUE, ncores = 8 , sampsize=nbModels*nbSim)"
+#The input file is created manually from the output of the following command: "modelTest2 <- abcrf(modindex2~., data = dataX2, ntree=1000, lda=FALSE, paral = TRUE, ncores = 8 , sampsize=nbModels*nbSim)"
+#See example "confusionmatrix_2Groups.txt"
 
 m <- as.matrix(data)
 rownames(m) <- c("pulse","continuous")
