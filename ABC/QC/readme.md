@@ -15,7 +15,7 @@ We compared three sets of windows.
 
 [Code](pulse-VS-continuous-all-param-equal-low-mig)
 
-- This QC was used as an "example" thus other folders might refer to the files in there.
+- [ ] This QC was used as an "example" thus other folders might refer to the files in there.
 - [ ] TODO write short background (though there is something in the MMs already)
 - [ ] Should I include the ABC-RF-QC plots? (PCA, goodness-of-fit, error of the forest...) (In the mean time they can be found here on my work computer: /Users/gwennabreton/Documents/Previous_work/PhD_work/P2_RHG_KS/ms/Supporting_information/QC_all_param_equal_very_low_mig/20210908_backup_modelchoice-modelchoice_pulseVScontinuous-QC-Constant_parameters/)
 
