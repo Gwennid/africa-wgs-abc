@@ -20,7 +20,6 @@ For example in this case, we are interested in comparing the pulse and the conti
 
 The reference tables at this stage are found [here](../3_reference-tables/).
 
-- [ ] Find an example of correspondence model number/info on the model and add it to the script
 - [ ] Decide whether it is a good idea to include these reference tables, or whether I should not include them at all, or the tables used for model choice (if someome wants to reproduce model choice).
 
 ## Step 3: Modify files for use with the R abcrf package
