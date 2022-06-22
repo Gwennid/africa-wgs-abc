@@ -4,9 +4,15 @@ Once the simulations are completed, reference tables for the ABC analysis are pr
 
 ## Step 1: Prepare reference tables for each model
 
-After this step, I have: a file with 382 sumstats; a file with the vectors of parameters (only relevant for parameter estimation though); and a file saying which row comes from which model (only relevant for model choice).
+This is performed once the simulations have been run as described [here](../../../fsc-simulations/readme.md). The outputs of the fsc simulations are concatenated and certain columns are extracted -and in one case, modified- to prepare the reference tables necessary for ABC model choice and parameter estimation.
 
-- [ ] Find the script that I run once all the fsc simulations are done, to obtain the file with 382 sumstats. It might be one or several scripts. It should deal with unsucessful simulations and with taking proportions for some of the statistics. I found a script that does that (ABC_simul_Second_trial_make_reference_tables.sh) but it is very messy, and I am quite sure that I can find something better! (e.g. for continuous models, or QC)
+After this step, one has the following files:
+- a file with 382 sumstats;
+- a file saying which row comes from which model (only relevant for model choice);
+- a file with the vectors of parameters (only used for parameter estimation);
+- a file describing which model code corresponds to which topology, migration rate etc.
+
+[This bash script](prepare_reference_tables_from_fsc_outputs.sh) shows how this can be done.
 
 ## Step 2: Prepare reference tables for ABC model choice
 
