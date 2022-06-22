@@ -27,7 +27,5 @@ head -1000 ${continuous}ABC_continuous_constant_0.000001_model1a_1000repeats_whi
 
 #Table3 (key for model number)
 #Prepared manually
-#It should look like:
-#TODO fill in!
 
 zip -r reference_tables_scenario_1a_2models_constant_1000repeats.zip 1a
