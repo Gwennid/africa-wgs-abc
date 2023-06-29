@@ -53,6 +53,7 @@ prefix=25KS.48RHG.104comp.HCBP.${chrom}.recalSNP99.9.recalINDEL99.0.FAIL1FAIL2FA
 folder=/crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/HC_BPresolution/3maskrecal.realn/allsites/3_geno01_hwefiltering/
 cd \$SNIC_TMP
 cp \${folder}\${prefix}.vcf.gz .
+cp \${folder}\${prefix}.vcf.gz.tbi .
 cp /crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/dbsnp156/modified_version/dbsnp156_1-22XYMT.vcf.gz .
 java -Xmx6g -jar \$PICARD_HOME/picard.jar CollectVariantCallingMetrics \
 INPUT=\${prefix}.vcf.gz \
