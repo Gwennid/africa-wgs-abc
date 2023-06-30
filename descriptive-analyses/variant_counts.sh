@@ -43,9 +43,9 @@ bcftools view -Ou -r NC_000001.11,NC_000002.12,NC_000003.12,NC_000004.12,NC_0000
 
 # Count variants in the VCF files after VQSR, relatedness, HWE and geno0.1 filtering
 #This is based on code in /Users/gwennabreton/Documents/Previous_work/PhD_work/P2_RHG_KS/sequence_processing/scripts/mapping_and_GATK_final_scripts/HC_BPresolution/initial_analyses.sh
-#for chrom in {1..22}; do
 cd /crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/bash_outputs/2023
-chrom=22
+#chrom=22 #Test run with chr22
+for chrom in {1..21}; do
 (echo '#!/bin/bash -l'
 echo "
 module load bioinfo-tools picard/2.10.3
@@ -61,5 +61,5 @@ OUTPUT=\${prefix}.dbsnp156 \
 DBSNP=dbsnp156_1-22XYMT.vcf.gz
 cp \${prefix}.dbsnp156* \${folder}
 exit 0") | sbatch -p core -n 1 -t 36:0:0 -A p2018003  -J filtered_${chrom}_CVCM -o filtered_${chrom}_CVCM_dbsnp156.output -e filtered_${chrom}_CVCM_dbsnp156.output --mail-user gwenna.breton@ebc.uu.se --mail-type=END,FAIL -M snowy
-#done
-#Test run with chr22; to see stats for snowy: jobinfo -u gwennabr -M snowy
+done
+#To see stats for snowy: jobinfo -u gwennabr -M snowy
