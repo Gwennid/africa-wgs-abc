@@ -4,6 +4,7 @@
 #Based on /Users/gwennabreton/Documents/Previous_work/PhD_work/P2_RHG_KS/sequence_processing/scripts/mapping_and_GATK_final_scripts/HC_BPresolution/countvariants/20200604_summarize_indcounts_bypop.R
 
 #Preliminary: individual ID were updated to more explicit names in file 25KS.48RHG.104comp.HCBP.1-22.recalSNP99.9.recalINDEL99.0.FAIL1FAIL2FAIL3.reheaded.dbsnp156.some_detail_metrics.AVG using the script africa-wgs-abc/descriptive-analyses/sed_old_new_ind_ID.sh 
+#I also added "ID" at the start of the first row, so that the header has as many elements as the number of columns.
 
 ##Read in the information
 setwd("/Users/gwennabreton/Documents/Previous_work/PhD_work/P2_RHG_KS/writing/ms/africa-wgs-abc/results/variant-counts")
@@ -36,13 +37,13 @@ for (i in (1:length(POP))) {
   novel_sd <- sd(counts2r$TOTALSNP[info3$POP==pop]-counts2r$NUM_IN_DB_SNP[info3$POP==pop])
   indel_mean <- mean(counts2r$TOTALINDEL[info3$POP==pop])
   indel_sd <- sd(counts2r$TOTALINDEL[info3$POP==pop])
-  mat[i,] <- c(pop,snp_mean,snp_sd,cov_mean,cov_sd,novel_mean,novel_sd,indel_mean,indel_sd)
+  mat[i,] <- c(pop,round(snp_mean),round(snp_sd),round(novel_mean),round(novel_sd),round(indel_mean),round(indel_sd),round(cov_mean,1),round(cov_sd,1))
 }
 
 write.table(file="25KS.48RHG.104comp.allfilters.summarybypop",mat,
-            col.names = c("POP","TOTALSNP_mean","TOTALSNP_sd","COV_mean","COV_sd","NOVELSNP_mean","NOVELSNP_sd","TOTALINDEL_mean","TOTALINDEL_sd"),
+            col.names = c("POP","TOTALSNP_mean","TOTALSNP_sd","NOVELSNP_mean","NOVELSNP_sd","TOTALINDEL_mean","TOTALINDEL_sd","COV_mean","COV_sd"),
             row.names=FALSE)
-#Comment: the standard deviation for groups with a single individual is NA (logically).
+#Comment: the standard deviation for groups with a single individual is NA.
 
 #####QUESTION
 ##There is more code to get mean coverage by dataset. Do I need that?
