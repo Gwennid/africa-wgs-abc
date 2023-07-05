@@ -177,3 +177,22 @@ Mat[180,] <- apply(Mat[1:length(INDIVALL),],2,min)
 Mat[181,] <- apply(Mat[1:length(INDIVALL),],2,max)
 #Write out
 write.table(file="25KS.48RHG.104comp.HCBP.1-22.recalSNP99.9.recalINDEL99.0.FAIL1FAIL2FAIL3.reheaded.dbsnp156.some_detail_metrics.AVG",x=Mat,col.names=header,row.names=c(INDIVALL,"COL_MEANS","StDev","MIN","MAX"),append=FALSE)
+
+###
+# Count variants in our dataset only (KS and central Africa)
+###
+
+#Step1: select the individuals
+folder=/crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/HC_BPresolution/3maskrecal.realn/allsites/3_geno01_hwefiltering/
+module load bioinfo-tools bcftools/1.17
+chrom=22
+prefix=${folder}25KS.48RHG.104comp.HCBP.${chrom}.recalSNP99.9.recalINDEL99.0.FAIL1FAIL2FAIL3.reheaded
+newprefix=${folder}25KS.48RHG.HCBP.${chrom}.recalSNP99.9.recalINDEL99.0.FAIL1FAIL2FAIL3.reheaded
+samplelist=${folder}25KS.48RHG_list #list of samples, one sample per row
+bcftools view -S $samplelist -o $newprefix.vcf.gz -Oz $prefix.vcf.gz
+
+#How is it going to look for variants that are not variable in the subset? Can Picard handle it?
+#Should I use TMP? (Especially if I submit all the jobs at once) (in that case perhaps I can do the entire process on TMP and not copy back the subsetted VCFs, since I don't need it really)
+
+#Step2: count variants
+Picard
