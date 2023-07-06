@@ -181,9 +181,11 @@ write.table(file="25KS.48RHG.104comp.HCBP.1-22.recalSNP99.9.recalINDEL99.0.FAIL1
 ###
 # Count variants in our dataset only (KS and central Africa)
 ###
+#I decided to not copy back the subsetted VCF from scratch. If I need it for something else, I can run the job again.
+#I kept it for chromosome 22 in case I want to try stuff.
 cd /crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/bash_outputs/2023
-#for chrom in {1..21}; do
-chrom=22
+for chrom in {1..21}; do
+#chrom=22
 (echo '#!/bin/bash -l'
 echo "
 folder=/crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/HC_BPresolution/3maskrecal.realn/allsites/3_geno01_hwefiltering/
@@ -209,16 +211,6 @@ DBSNP=dbsnp156_1-22XYMT.vcf.gz
 
 #Step3: copy everything back
 cp \${newprefix}.dbsnp156* \${folder}
-cp \${newprefix}.vcf.gz* \${folder}
+#cp \${newprefix}.vcf.gz* \${folder}
 exit 0") | sbatch -p core -n 1 -t 36:0:0 -A p2018003  -J select_and_CVCM_${chrom} -o select_and_CVCM_${chrom}_dbsnp156.output -e  select_and_CVCM_${chrom}_dbsnp156.output --mail-user gwenna.breton@ebc.uu.se --mail-type=END,FAIL -M snowy
-#done
-
-
-
-
-#How is it going to look for variants that are not variable in the subset? Can Picard handle it?
-#Should I use TMP? (Especially if I submit all the jobs at once) (in that case perhaps I can do the entire process on TMP and not copy back the subsetted VCFs, since I don't need it really)
-#Is an index required?
-
-#Step2: count variants
-Picard
+done
