@@ -214,3 +214,51 @@ cp \${newprefix}.dbsnp156* \${folder}
 #cp \${newprefix}.vcf.gz* \${folder}
 exit 0") | sbatch -p core -n 1 -t 36:0:0 -A p2018003  -J select_and_CVCM_${chrom} -o select_and_CVCM_${chrom}_dbsnp156.output -e  select_and_CVCM_${chrom}_dbsnp156.output --mail-user gwenna.breton@ebc.uu.se --mail-type=END,FAIL -M snowy
 done
+
+###
+# Using the outputs of Picard's CollectVariantCallingMetrics, get metrics of interest (e.g. sum across 1-22)
+###
+#This is based on code in /Users/gwennabreton/Documents/Previous_work/PhD_work/P2_RHG_KS/sequence_processing/scripts/mapping_and_GATK_final_scripts/HC_BPresolution/countvariants/collect_metrics.sh
+# This should be run on rackham, as an interactive job.
+
+### Summary metrics
+
+cd /crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/HC_BPresolution/3maskrecal.realn/allsites/3_geno01_hwefiltering
+cp /crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/Project_4/Processing_pipeline_comparison/get_summary.sh tmp
+
+########################
+# Content of /crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/Project_4/Processing_pipeline_comparison/get_summary.sh
+########################
+file=FILE
+head -8 ${file}| tail -1 > counts
+TOTALSNP=$(cut -f1 counts)
+NUM_IN_DB_SNP=$(cut -f2 counts)
+FILTEREDSNP=$(cut -f4 counts)
+DBSNPTITV=$(cut -f6 counts)
+NOVELTITV=$(cut -f7 counts)
+TOTALINDEL=$(cut -f8 counts)
+NUM_IN_DB_SNP_INDELS=$(cut -f12 counts)
+TOTALMULTIALLELICSNPS=$(cut -f15 counts)
+TOTALCOMPLEXINDELS=$(cut -f17 counts)
+SNPREFERENCEBIAS=$(cut -f19 counts)
+NUMSINGLETONS=$(cut -f20 counts)
+echo ${file} ${TOTALSNP} ${NUM_IN_DB_SNP} ${TOTALMULTIALLELICSNPS} ${TOTALINDEL} ${NUM_IN_DB_SNP_INDELS} ${TOTALCOMPLEXINDELS} ${DBSNPTITV} ${NOVELTITV} ${SNPREFERENCEBIAS} ${NUMSINGLETONS} ${FILTEREDSNP} >> OUT
+rm counts
+########################
+
+sed "s/OUT/25KS.48RHG.HCBP.1-22.recalSNP99.9.recalINDEL99.0.FAIL1FAIL2FAIL3.reheaded.dbsnp156.some_summary_metrics/g" < tmp > get_summary_25KS.48RHG.1-22.dbsnp156.sh; rm tmp
+echo "FILE TOTALSNP NUM_IN_DB_SNP TOTALMULTIALLELICSNPS TOTALINDEL NUM_IN_DB_SNP_INDELS TOTALCOMPLEXINDELS DBSNPTITV NOVELTITV SNPREFERENCEBIAS NUMSINGLETONS FILTEREDSNP" > 25KS.48RHG.HCBP.1-22.recalSNP99.9.recalINDEL99.0.FAIL1FAIL2FAIL3.reheaded.dbsnp156.some_summary_metrics
+for chr in {1..22}; do
+sed "s/FILE/25KS.48RHG.HCBP.${chr}.recalSNP99.9.recalINDEL99.0.FAIL1FAIL2FAIL3.reheaded.dbsnp156.variant_calling_summary_metrics/g" < get_summary_25KS.48RHG.1-22.dbsnp156.sh > get_summary_${chr}.sh
+bash get_summary_${chr}.sh
+rm get_summary_${chr}.sh
+done
+
+#Get sum/mean/weighted mean depending on metrics with R
+R
+data <- read.table(file="25KS.48RHG.HCBP.1-22.recalSNP99.9.recalINDEL99.0.FAIL1FAIL2FAIL3.reheaded.dbsnp156.some_summary_metrics",header=TRUE)
+header=c("TOTALSNP","NUM_IN_DB_SNP","TOTALMULTIALLELICSNPS","TOTALINDEL","NUM_IN_DB_SNP_INDELS","TOTALCOMPLEXINDELS","NUMSINGLETONS","FILTEREDSNP","PCT_DB_SNP_SNP","PCT_DB_SNP_INDEL","DBSNPTITV","NOVELTITV","SNPREFERENCEBIAS")
+write.table(file="25KS.48RHG.HCBP.1-22.recalSNP99.9.recalINDEL99.0.FAIL1FAIL2FAIL3.reheaded.dbsnp156.some_summary_metrics.AVG",x=t(c(sum(data$TOTALSNP),sum(data$NUM_IN_DB_SNP),sum(data$TOTALMULTIALLELICSNPS),sum(data$TOTALINDEL),sum(data$NUM_IN_DB_SNP_INDELS),sum(data$TOTALCOMPLEXINDELS),sum(data$NUMSINGLETONS),sum(data$FILTEREDSNP),sum(data$NUM_IN_DB_SNP)/sum(data$TOTALSNP),sum(data$NUM_IN_DB_SNP_INDELS)/sum(data$TOTALINDEL),sum(data$DBSNPTITV*(data$NUM_IN_DB_SNP/sum(data$NUM_IN_DB_SNP))),sum(data$NOVELTITV*((data$TOTALSNP-data$NUM_IN_DB_SNP)/sum(data$TOTALSNP-data$NUM_IN_DB_SNP))),sum(data$SNPREFERENCEBIAS*(data$TOTALSNP/sum(data$TOTALSNP))))),col.names=header,row.names=FALSE)
+q()
+n
+
