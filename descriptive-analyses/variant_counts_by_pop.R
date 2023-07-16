@@ -7,7 +7,7 @@
 #I also added "ID" at the start of the first row, so that the header has as many elements as the number of columns.
 
 ##Read in the information
-setwd("/Users/gwennabreton/Documents/Previous_work/PhD_work/P2_RHG_KS/writing/ms/africa-wgs-abc/results/variant-counts")
+setwd("/Users/gwennabreton/Documents/Previous_work/PhD_work/P2_RHG_KS/africa-wgs-abc/results/variant-counts")
 counts <- read.table("25KS.48RHG.104comp.HCBP.1-22.recalSNP99.9.recalINDEL99.0.FAIL1FAIL2FAIL3.reheaded.dbsnp156.some_detail_metrics.AVG_newnames",header=TRUE)
 
 ##Add information about population etc
@@ -25,26 +25,64 @@ POP <- c("ba.kiga","ba.kola","ba.konjo","ba.twa","baka","bantuh","bantuk","bantu
          "maasai","mandenka","mandinka","mbuti","mende","mozabite","nama","ngumba","nsua","nzime","papuan","saharawi","somali","sotho",
          "xhosa","xun","yoruba","zulu")
 
-mat <- matrix(0,length(POP),9)
-
-for (i in (1:length(POP))) {
-  pop <- POP[i]
-  snp_mean <- mean(counts2r$TOTALSNP[info3$POP==pop])
-  snp_sd <- sd(counts2r$TOTALSNP[info3$POP==pop])
-  cov_mean <- mean(info3$COVERAGE[info3$POP==pop])
-  cov_sd <- sd(info3$COVERAGE[info3$POP==pop])
-  novel_mean <- mean(counts2r$TOTALSNP[info3$POP==pop]-counts2r$NUM_IN_DB_SNP[info3$POP==pop])
-  novel_sd <- sd(counts2r$TOTALSNP[info3$POP==pop]-counts2r$NUM_IN_DB_SNP[info3$POP==pop])
-  indel_mean <- mean(counts2r$TOTALINDEL[info3$POP==pop])
-  indel_sd <- sd(counts2r$TOTALINDEL[info3$POP==pop])
-  mat[i,] <- c(pop,round(snp_mean),round(snp_sd),round(novel_mean),round(novel_sd),round(indel_mean),round(indel_sd),round(cov_mean,1),round(cov_sd,1))
-}
-
-write.table(file="25KS.48RHG.104comp.allfilters.summarybypop",mat,
-            col.names = c("POP","TOTALSNP_mean","TOTALSNP_sd","NOVELSNP_mean","NOVELSNP_sd","TOTALINDEL_mean","TOTALINDEL_sd","COV_mean","COV_sd"),
-            row.names=FALSE)
-#Comment: the standard deviation for groups with a single individual is NA.
+# mat <- matrix(0,length(POP),9)
+# 
+# for (i in (1:length(POP))) {
+#   pop <- POP[i]
+#   snp_mean <- mean(counts2r$TOTALSNP[info3$POP==pop])
+#   snp_sd <- sd(counts2r$TOTALSNP[info3$POP==pop])
+#   cov_mean <- mean(info3$COVERAGE[info3$POP==pop])
+#   cov_sd <- sd(info3$COVERAGE[info3$POP==pop])
+#   novel_mean <- mean(counts2r$TOTALSNP[info3$POP==pop]-counts2r$NUM_IN_DB_SNP[info3$POP==pop])
+#   novel_sd <- sd(counts2r$TOTALSNP[info3$POP==pop]-counts2r$NUM_IN_DB_SNP[info3$POP==pop])
+#   indel_mean <- mean(counts2r$TOTALINDEL[info3$POP==pop])
+#   indel_sd <- sd(counts2r$TOTALINDEL[info3$POP==pop])
+#   mat[i,] <- c(pop,round(snp_mean),round(snp_sd),round(novel_mean),round(novel_sd),round(indel_mean),round(indel_sd),round(cov_mean,1),round(cov_sd,1))
+# }
+# 
+# write.table(file="25KS.48RHG.104comp.allfilters.summarybypop",mat,
+#             col.names = c("POP","TOTALSNP_mean","TOTALSNP_sd","NOVELSNP_mean","NOVELSNP_sd","TOTALINDEL_mean","TOTALINDEL_sd","COV_mean","COV_sd"),
+#             row.names=FALSE)
+# #Comment: the standard deviation for groups with a single individual is NA.
 
 #####QUESTION
 ##There is more code to get mean coverage by dataset. Do I need that?
 #####
+
+#####
+# Plot the number of biallelic SNPs by population (boxplots)
+#####
+
+#Exploration
+
+boxplot(counts2r$TOTALSNP ~ info3$POP) #Looks very messy. Should I remove the populations for which there are 1 or 2 individuals?
+#Should I focus on our populations only?
+
+boxplot(counts2r$TOTALSNP ~ info3$WIDEPOP)
+#Obs! The "WIDEPOP" category is weird - I included the RHGn...
+
+#Plot only our data
+boxplot(counts2r$TOTALSNP[info3$DATASET=="PNP" | info3$DATASET=="KSP"] ~ info3$POP[info3$DATASET=="PNP" | info3$DATASET=="KSP"])
+
+#Make a single dataframe so it's easier to manipulate
+data <- data.frame(counts2r, info3)
+
+#Trying to order by increasing median of "TOTALSNP" (i.e. biallelic SNP by individual)
+new_order <- with(data, reorder(data$POP, data$TOTALSNP, median , na.rm=T))
+boxplot(data$TOTALSNP ~ new_order , ylab="Number of biallelic SNPs" , col="#69b3a2", boxwex=0.4 , main="")
+
+#Subset the original data frame to our populations and do the same (= order by increasing median)
+data_KSP_PNP <- subset.data.frame(data, data$DATASET=="PNP" | data$DATASET=="KSP")
+new_order_KSP_PNP <- with(data_KSP_PNP, reorder(data_KSP_PNP$POP, data_KSP_PNP$TOTALSNP, median , na.rm=T))
+boxplot(data_KSP_PNP$TOTALSNP ~ new_order_KSP_PNP, ylab="Number of biallelic SNPs" ,
+        col=c(rep("chocolate",4),rep("chartreuse",5),rep("slateblue4",5)), boxwex=0.4 , main="", xlab = "",
+        names = c("Ba.Kiga","Ba.Konjo","Nzime","Ngumba","Ba.Twa","Ba.Kola","Nsua","Baka","Bi.Aka Mbati","Nama","Karretjie People","Khutse San","!Xun","Ju|'hoansi"))
+#Next:
+# - replace by proper population names
+#c("Ba.Kiga","Ba.Konjo","Nzime","Ngumba","Ba.Twa","Ba.Kola","Nsua","Baka","Bi.Aka Mbati","Nama","Karretjie People","Khutse San","!Xun","Ju|'hoansi")
+# - write the population names smaller so that they fit
+# - color code by RHG/RHGn/KS. Do I have these broad categories somewhere?
+#"slateblue4" = Juhoansi, "chartreuse" = Baka, "chocolate" = Ngumba
+# - show it to PV. Should I include a couple of comparative populations? Color code? (Look together at the existing figures and decide) (I went for blue for KS, green for RHG, red for RHGn) (he went for a different set for ABC models)
+# - modify the ylim?
+
