@@ -53,30 +53,28 @@ POP <- c("ba.kiga","ba.kola","ba.konjo","ba.twa","baka","bantuh","bantuk","bantu
 # Plot the number of biallelic SNPs by population (boxplots)
 #####
 
-#Exploration
-
-boxplot(counts2r$TOTALSNP ~ info3$POP) #Looks very messy. Should I remove the populations for which there are 1 or 2 individuals?
-#Should I focus on our populations only?
-
-boxplot(counts2r$TOTALSNP ~ info3$WIDEPOP)
-#Obs! The "WIDEPOP" category is weird - I included the RHGn...
-
-#Plot only our data
-boxplot(counts2r$TOTALSNP[info3$DATASET=="PNP" | info3$DATASET=="KSP"] ~ info3$POP[info3$DATASET=="PNP" | info3$DATASET=="KSP"])
-
 #Make a single dataframe so it's easier to manipulate
 data <- data.frame(counts2r, info3)
 
-#Trying to order by increasing median of "TOTALSNP" (i.e. biallelic SNP by individual)
+#Order by increasing median of "TOTALSNP" (i.e. biallelic SNP by individual)
 new_order <- with(data, reorder(data$POP, data$TOTALSNP, median , na.rm=T))
 boxplot(data$TOTALSNP ~ new_order , ylab="Number of biallelic SNPs" , col="#69b3a2", boxwex=0.4 , main="")
 
 #Subset the original data frame to our populations and do the same (= order by increasing median)
 data_KSP_PNP <- subset.data.frame(data, data$DATASET=="PNP" | data$DATASET=="KSP")
 new_order_KSP_PNP <- with(data_KSP_PNP, reorder(data_KSP_PNP$POP, data_KSP_PNP$TOTALSNP, median , na.rm=T))
+
+pdf(file="../../results/variant-counts/biallelic_snps_by_pop_KSP-PNP.pdf",height=5,width=10,pointsize = 12)
+par(cex.axis=1) #This is for the name of the labels (on the x and on the y axes)
+par(cex.lab=1) #This is for the name of the axis (e.g. "Number of biallelic SNPs")
+par(mar=c(7.5, 4, 2, 2) + 0.1) #Default: c(5, 4, 4, 2) + 0.1 - c(bottom, left, top, right)
 boxplot(data_KSP_PNP$TOTALSNP ~ new_order_KSP_PNP, ylab="Number of biallelic SNPs" ,
-        col=c(rep("chocolate",4),rep("chartreuse",5),rep("slateblue4",5)), boxwex=0.4 , main="", xlab = "",
-        names = c("Ba.Kiga","Ba.Konjo","Nzime","Ngumba","Ba.Twa","Ba.Kola","Nsua","Baka","Bi.Aka Mbati","Nama","Karretjie People","Khutse San","!Xun","Ju|'hoansi"))
+        col=c(rep("chocolate",4),rep("chartreuse",5),rep("slateblue4",5)), boxwex=0.4, main="", xlab = "",
+        names = c("Ba.Kiga","Ba.Konjo","Nzime","Ngumba","Ba.Twa","Ba.Kola","Nsua","Baka","Bi.Aka Mbati","Nama","Karretjie People","Khutse San","!Xun","Ju|'hoansi"),
+        las = 3)
+dev.off()
+
+
 #Next:
 # - replace by proper population names
 #c("Ba.Kiga","Ba.Konjo","Nzime","Ngumba","Ba.Twa","Ba.Kola","Nsua","Baka","Bi.Aka Mbati","Nama","Karretjie People","Khutse San","!Xun","Ju|'hoansi")
