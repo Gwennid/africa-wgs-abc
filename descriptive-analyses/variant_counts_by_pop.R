@@ -74,13 +74,20 @@ boxplot(data_KSP_PNP$TOTALSNP ~ new_order_KSP_PNP, ylab="Number of biallelic SNP
         las = 3)
 dev.off()
 
-
 #Next:
 # - replace by proper population names
 #c("Ba.Kiga","Ba.Konjo","Nzime","Ngumba","Ba.Twa","Ba.Kola","Nsua","Baka","Bi.Aka Mbati","Nama","Karretjie People","Khutse San","!Xun","Ju|'hoansi")
 # - write the population names smaller so that they fit
 # - color code by RHG/RHGn/KS. Do I have these broad categories somewhere?
 #"slateblue4" = Juhoansi, "chartreuse" = Baka, "chocolate" = Ngumba
-# - show it to PV. Should I include a couple of comparative populations? Color code? (Look together at the existing figures and decide) (I went for blue for KS, green for RHG, red for RHGn) (he went for a different set for ABC models)
+# - show it to PV. Should I include a couple of comparative populations? 
+#Color code? (Look together at the existing figures and decide) (I went for blue for KS, green 
+#for RHG, red for RHGn) (he went for a different set for ABC models)
 # - modify the ylim?
+
+
+
+
+
+            
 
