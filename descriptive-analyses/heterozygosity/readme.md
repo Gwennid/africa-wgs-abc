@@ -10,7 +10,9 @@ The last step is to calculate the X to autosome heterozygosity ratio.
 
 ## Input autosomes
 
-Start from `/proj/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/HC_BPresolution/3maskrecal.realn/allsites/3_geno01_hwefiltering` (?)
+Start from `/crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/HC_BPresolution/3maskrecal.realn/allsites/3_geno01_hwefiltering` (?)
+
+The code that I used previously, and corresponding results, is in: `/crex/proj/snic2020-2-10/uppstore2017183/b2012165/private/Seq_proj_cont/scripts/GATK_pipeline/analyses_from20181210/heterozygosity/bypop`
 
 ## Input X chromosome
 
