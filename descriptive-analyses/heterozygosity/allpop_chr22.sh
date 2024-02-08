@@ -137,7 +137,7 @@ sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_X.py | sed "s/popname/${POP
 (echo '#!/bin/bash -l'
 echo "
 CHR=22
-for POPNAME in Baka Nzime BaKola Ngumba AkaMbati BaKiga BaTwa BaKonjo Karretjiepeople GuiandGana Juhoansi Nama Xun BantuHerero BantuKenya BantuTswana Biaka Dinka Esan Gambian Igbo Juhoansi_comp Khomani Lemande Luhya Luo Mandenka Maasai Mbuti Mende Mozabite Saharawi Yoruba DaiChinese Karitiana Papuan French CEU Coloured SothoSpeakers XhosaSpeakers Dinka; do
+for POPNAME in Baka Nzime BaKola Ngumba AkaMbati BaKiga BaTwa BaKonjo Karretjiepeople GuiandGana Juhoansi Nama Xun BantuHerero BantuKenya BantuTswana Biaka Dinka Esan Gambian Igbo Juhoansi_comp Khomani Lemande Luhya Luo Mandenka Maasai Mbuti Mende Mozabite Saharawi Yoruba DaiChinese Karitiana Papuan French CEU Coloured SothoSpeakers XhosaSpeakers; do
 python /crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/bash_outputs/2024/Het_calculations_${POPNAME}_${CHR}.py ;
 done
 exit 0") | sbatch -p core -n 3 -t 24:0:0 -A p2018003 -J count_het_${CHR}_allpop -o count_het_${CHR}_allpop.output -e count_het_${CHR}_allpop.output --mail-user gwenna.breton@ebc.uu.se --mail-type=FAIL
