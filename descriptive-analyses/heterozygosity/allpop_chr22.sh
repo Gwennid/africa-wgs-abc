@@ -131,7 +131,7 @@ POPNAME=XhosaSpeakers ;
 sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/${POPNAME}/g" | sed "s/indname/['SAHGP_EGAZ00001314211_sequence_files_ega_Illumina_FTS_20140424_LP6005857-DNA_A03_Assembly_LP6005857-DNA_A03','SAHGP_EGAZ00001314212_sequence_files_ega_Illumina_FTS_20140424_LP6005857-DNA_B03_Assembly_LP6005857-DNA_B03','SAHGP_EGAZ00001314213_sequence_files_ega_Illumina_FTS_20140424_LP6005857-DNA_C03_Assembly_LP6005857-DNA_C03','SAHGP_EGAZ00001314214_sequence_files_ega_Illumina_FTS_20140424_LP6005857-DNA_D03_Assembly_LP6005857-DNA_D03','SAHGP_EGAZ00001314215_sequence_files_ega_Illumina_FTS_20140424_LP6005857-DNA_E03_Assembly_LP6005857-DNA_E03','SAHGP_EGAZ00001314216_sequence_files_ega_Illumina_FTS_20140424_LP6005857-DNA_F03_Assembly_LP6005857-DNA_F03','SAHGP_EGAZ00001314217_sequence_files_ega_Illumina_FTS_20140424_LP6005857-DNA_G03_Assembly_LP6005857-DNA_G03','SAHGP_EGAZ00001314218_sequence_files_ega_Illumina_FTS_20140424_LP6005857-DNA_H03_Assembly_LP6005857-DNA_H03']/g" > Het_calculations_${POPNAME}_${CHR}.py ;
 #
 POPNAME=Dinka ;
-sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_X.py | sed "s/popname/${POPNAME}/g" | sed "s/indname/['SGDP_LP6005443-DNA_H08','SGDP_LP6005443-DNA_B09','SGDP_SS6004480','HGDP_DNK02']/g" > Het_calculations_${POPNAME}_${CHR}.py  ;
+sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/${POPNAME}/g" | sed "s/indname/['SGDP_LP6005443-DNA_H08','SGDP_LP6005443-DNA_B09','SGDP_SS6004480','HGDP_DNK02']/g" > Het_calculations_${POPNAME}_${CHR}.py  ;
 
 # Submit the scripts in a single loop
 (echo '#!/bin/bash -l'
