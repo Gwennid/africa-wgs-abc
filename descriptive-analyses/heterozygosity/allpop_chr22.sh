@@ -136,6 +136,7 @@ sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/$
 # Submit the scripts in a single loop
 (echo '#!/bin/bash -l'
 echo "
+cd /crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/HC_BPresolution/3maskrecal.realn/allsites/3_geno01_hwefiltering/het_calculations_2024
 CHR=22
 for POPNAME in Baka Nzime BaKola Ngumba AkaMbati BaKiga BaTwa BaKonjo Karretjiepeople GuiandGana Juhoansi Nama Xun BantuHerero BantuKenya BantuTswana Biaka Dinka Esan Gambian Igbo Juhoansi_comp Khomani Lemande Luhya Luo Mandenka Maasai Mbuti Mende Mozabite Saharawi Yoruba DaiChinese Karitiana Papuan French CEU Coloured SothoSpeakers XhosaSpeakers; do
 python /crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/bash_outputs/2024/Het_calculations_${POPNAME}_${CHR}.py ;
