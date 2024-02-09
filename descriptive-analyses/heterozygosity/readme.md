@@ -14,6 +14,8 @@ Start from `/crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/S
 
 The code that I used previously, and corresponding results, is in: `/crex/proj/snic2020-2-10/uppstore2017183/b2012165/private/Seq_proj_cont/scripts/GATK_pipeline/analyses_from20181210/heterozygosity/bypop` (code and bash outputs) and `/crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/HC_BPresolution/3maskrecal.realn/allsites/3_geno01_hwefiltering/het_calculations` (counts).
 
+Scripts and bash outputs from 2024 are in: `/crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/bash_outputs/2024`
+
 ## Input X chromosome
 
 The PAR region is removed. **TODO Elaborate**
