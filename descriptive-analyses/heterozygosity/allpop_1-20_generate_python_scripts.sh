@@ -28,8 +28,8 @@ sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/$
 POPNAME=BaTwa ;
 sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/${POPNAME}/g" | sed "s/indname/['PNP060','PNP062','PNP063','PNP064','PNP065','PNP066']/g" > Het_calculations_${POPNAME}_${CHR}.py  ;
 #
-#POPNAME=Nsua ;
-#sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/${POPNAME}/g" | sed "s/indname/['PNP070','PNP071','PNP072','PNP073','PNP074']/g" > Het_calculations_${POPNAME}_${CHR}.py  ;
+POPNAME=Nsua ;
+sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/${POPNAME}/g" | sed "s/indname/['PNP070','PNP071','PNP072','PNP073','PNP074']/g" > Het_calculations_${POPNAME}_${CHR}.py  ;
 #
 POPNAME=BaKonjo ;
 sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/${POPNAME}/g" | sed "s/indname/['PNP080','PNP081','PNP082','PNP083','PNP084']/g" > Het_calculations_${POPNAME}_${CHR}.py  ;
