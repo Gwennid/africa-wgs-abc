@@ -134,11 +134,10 @@ POPNAME=Dinka ;
 sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/${POPNAME}/g" | sed "s/indname/['SGDP_LP6005443-DNA_H08','SGDP_LP6005443-DNA_B09','SGDP_SS6004480','HGDP_DNK02']/g" > Het_calculations_${POPNAME}_${CHR}.py  ;
 
 # Submit the scripts in a single loop
-(echo '#!/bin/bash -l'
-echo "
+(echo '#!/bin/bash -l
 cd /crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/HC_BPresolution/3maskrecal.realn/allsites/3_geno01_hwefiltering/het_calculations_2024
 CHR=22
 for POPNAME in Baka Nzime BaKola Ngumba AkaMbati BaKiga BaTwa BaKonjo Karretjiepeople GuiandGana Juhoansi Nama Xun BantuHerero BantuKenya BantuTswana Biaka Dinka Esan Gambian Igbo Juhoansi_comp Khomani Lemande Luhya Luo Mandenka Maasai Mbuti Mende Mozabite Saharawi Yoruba DaiChinese Karitiana Papuan French CEU Coloured SothoSpeakers XhosaSpeakers; do
 python /crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/bash_outputs/2024/Het_calculations_${POPNAME}_${CHR}.py ;
 done
-exit 0") | sbatch -p core -n 3 -t 24:0:0 -A p2018003 -J count_het_${CHR}_allpop -o count_het_${CHR}_allpop.output -e count_het_${CHR}_allpop.output --mail-user gwenna.breton@ebc.uu.se --mail-type=FAIL
+exit 0') | sbatch -p core -n 3 -t 24:0:0 -A p2018003 -J count_het_${CHR}_allpop -o count_het_${CHR}_allpop.output -e count_het_${CHR}_allpop.output --mail-user gwenna.breton@ebc.uu.se --mail-type=FAIL
