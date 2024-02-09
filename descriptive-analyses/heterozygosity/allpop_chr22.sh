@@ -141,3 +141,38 @@ for POPNAME in Baka Nzime BaKola Ngumba AkaMbati BaKiga BaTwa BaKonjo Karretjiep
 python /crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/bash_outputs/2024/Het_calculations_${POPNAME}_${CHR}.py ;
 done
 exit 0') | sbatch -p core -n 3 -t 24:0:0 -A p2018003 -J count_het_${CHR}_allpop -o count_het_${CHR}_allpop.output -e count_het_${CHR}_allpop.output --mail-user gwenna.breton@ebc.uu.se --mail-type=FAIL
+
+# Prepare code for "noHGDP" sets
+POPNAME=Dinka_noHGDP ;
+sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/${POPNAME}/g" | sed "s/indname/['SGDP_LP6005443-DNA_H08','SGDP_LP6005443-DNA_B09','SGDP_SS6004480']/g" > Het_calculations_${POPNAME}_${CHR}.py  ;
+#
+POPNAME=Juhoansi_comp_noHGDP ;
+sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/${POPNAME}/g" | sed "s/indname/['SGDP_LP6005443-DNA_G08','SGDP_LP6005441-DNA_A11','SGDP_SS6004473']/g" > Het_calculations_${POPNAME}_${CHR}.py  ;
+#
+POPNAME=Mandenka_noHGDP ;
+sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/${POPNAME}/g" | sed "s/indname/['SGDP_LP6005441-DNA_E07','SGDP_LP6005441-DNA_F07','SGDP_SS6004470']/g" > Het_calculations_${POPNAME}_${CHR}.py  ;
+#
+POPNAME=Mbuti_noHGDP ;
+sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/${POPNAME}/g" | sed "s/indname/['SGDP_LP6005592-DNA_C03','SGDP_LP6005441-DNA_B08','SGDP_LP6005441-DNA_A08','SGDP_SS6004471']/g" > Het_calculations_${POPNAME}_${CHR}.py  ;
+#
+POPNAME=Yoruba_noHGDP ;
+sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/${POPNAME}/g" | sed "s/indname/['SGDP_LP6005442-DNA_B02','SGDP_LP6005442-DNA_A02','SGDP_SS6004475']/g" > Het_calculations_${POPNAME}_${CHR}.py  ;
+#
+POPNAME=French_noHGDP ;
+sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/${POPNAME}/g" | sed "s/indname/['SGDP_LP6005441-DNA_A05','SGDP_LP6005441-DNA_B05','SGDP_SS6004468']/g" > Het_calculations_${POPNAME}_${CHR}.py ;
+#
+POPNAME=Papuan_noHGDP ;
+sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/${POPNAME}/g" | sed "s/indname/['SGDP_LP6005441-DNA_B10','SGDP_LP6005443-DNA_C08','SGDP_LP6005443-DNA_B08','SGDP_LP6005443-DNA_G07','SGDP_LP6005443-DNA_D08']/g" > Het_calculations_${POPNAME}_${CHR}.py ;
+#
+POPNAME=Karitiana_noHGDP ;
+sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/${POPNAME}/g" | sed "s/indname/['SGDP_LP6005441-DNA_G06','SGDP_LP6005441-DNA_H06','SGDP_SS6004476','Rasmussen_KAR4']/g" > Het_calculations_${POPNAME}_${CHR}.py ;
+
+# Submit
+(echo '#!/bin/bash -l
+cd /crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/HC_BPresolution/3maskrecal.realn/allsites/3_geno01_hwefiltering/het_calculations_2024
+CHR=22
+for POPNAME in Dinka_noHGDP Juhoansi_comp_noHGDP Mandenka_noHGDP Mbuti_noHGDP Yoruba_noHGDP French_noHGDP Papuan_noHGDP Karitiana_noHGDP; do
+python /crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/bash_outputs/2024/Het_calculations_${POPNAME}_${CHR}.py ;
+done
+exit 0') | sbatch -p core -n 3 -t 6:0:0 -A p2018003 -J count_het_${CHR}_noHGDP -o count_het_${CHR}_noHGDP.output -e count_het_${CHR}_noHGDP.output --mail-user gwenna.breton@ebc.uu.se --mail-type=FAIL
+
