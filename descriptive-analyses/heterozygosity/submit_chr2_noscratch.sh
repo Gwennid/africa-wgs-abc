@@ -2,7 +2,7 @@
 #2024-02-18
 #Goal: submit script to count variant and non-variant positions in different configurations, for a given chromosome and a given set of individuals (representing a population). Not using scratch.
 
-CHR=22
+CHR=2
 POPNAME=Nzime
 cd /crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/bash_outputs/2024
 
