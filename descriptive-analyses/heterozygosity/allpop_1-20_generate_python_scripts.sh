@@ -156,5 +156,8 @@ sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/$
 #
 POPNAME=Karitiana_noHGDP ;
 sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/${POPNAME}/g" | sed "s/indname/['SGDP_LP6005441-DNA_G06','SGDP_LP6005441-DNA_H06','SGDP_SS6004476','Rasmussen_KAR4']/g" > Het_calculations_${POPNAME}_${CHR}.py ;
-
+#
+POPNAME=DaiChinese_noHGDP ;
+sed "s/chromosome/${CHR}/g" < Het_calculations_bypop_bychr.py | sed "s/popname/${POPNAME}/g" | sed "s/indname/['SGDP_LP6005592-DNA_D03','SGDP_LP6005443-DNA_B01','SGDP_LP6005441-DNA_D04','SGDP_SS6004467','HG00759']/g" > Het_calculations_${POPNAME}_${CHR}.py ;
+#
 done
