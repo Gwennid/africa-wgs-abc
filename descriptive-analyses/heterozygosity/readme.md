@@ -24,9 +24,9 @@ Start from `/crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/S
 
 ## Step 1: count the different configurations
 
-This is done in each population and for each chromosome. There is a Python script for each population, for example `Het_calculations_AkaMbati_19.py`, and a bash script to submit those, for example `allpop_scratch_chr19.sh`. Chromosomes 5-6 and 9-22 were run in batch and using scratch. The other autosomes (1-4, 7-8) were not run on scratch, as it appeared that the decompression was incomplete on scratch, probably due to the size of the VCF (more than 600 GiG for chromosomes 1 and 2 for example).
+This is done in each population and for each chromosome. There is a Python script for each population and each chromosome. The template is `Het_calculations_bypop_bychr.py`, and you can generate all scripts with `allpop_1-22_generate_python_scripts.sh`. These scripts are submitted via a bash script, for example `allpop_scratch_chr19.sh`. Chromosomes 5-6 and 9-22 were run in batch and using scratch. The other autosomes (1-4, 7-8) were not run on scratch, as it appeared that the decompression was incomplete on scratch, probably due to the size of the VCF (more than 600 GiG for chromosomes 1 and 2 for example).
 
-All outputs have been placed in `/crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/HC_BPresolution/3maskrecal.realn/allsites/3_geno01_hwefiltering/het_calculations_2024/wrapup`
+All outputs were placed in `/crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/HC_BPresolution/3maskrecal.realn/allsites/3_geno01_hwefiltering/het_calculations_2024/wrapup`
 
 ## Step 2: put together the results from all chromosomes and all populations
 
