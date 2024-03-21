@@ -7,7 +7,9 @@
 #R version 3.6.0
 setwd("/crex/proj/snic2020-2-10/uppstore2017183/b2012165_nobackup/private/Seq_project_cont/HC_BPresolution/3maskrecal.realn/allsites/3_geno01_hwefiltering/het_calculations_2024/wrapup")
 
-#####
+##### AUTOSOMES #####
+
+##### 
 ## For each population, calculate the % of missing sites for the NOVAR sites (NOVAR in the dataset) and the % of missing sites for the BIAL sites (BIAL in the dataset).
 #Hypothesis: will vary with average coverage in the population.
 #####
@@ -27,10 +29,9 @@ for (CHR in c(1:22)) {
 }
 
 #Do the same for the population sets excluding the HGDP samples
-#TODO Oups! I forgot to count the configurations for "DaiChinese_noHGDP". I will do that later.
 write.table(file="allchr_pop_noHGDP_count_summary.txt",t(c("CHR","POPNAME","tot_novar","tot_bial","bial_in_pop","prop_missing_novar","prop_missing_bial")),col.names = FALSE,row.names = FALSE)
 for (CHR in c(1:22)) {
-  for (POPNAME in c("Juhoansi_comp_noHGDP","Dinka_noHGDP","French_noHGDP","Papuan_noHGDP","Yoruba_noHGDP","Mbuti_noHGDP","Mandenka_noHGDP","Karitiana_noHGDP")) {
+  for (POPNAME in c("Juhoansi_comp_noHGDP","Dinka_noHGDP","French_noHGDP","Papuan_noHGDP","Yoruba_noHGDP","Mbuti_noHGDP","Mandenka_noHGDP","Karitiana_noHGDP","DaiChinese_noHGDP")) {
     count = read.table(file=paste("chr",CHR,"_",POPNAME,"_count.txt",sep=""))
     tot_novar = sum(count[1:2,2])
     tot_bial = sum(count[3:6,2])
