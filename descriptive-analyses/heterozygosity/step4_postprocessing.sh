@@ -59,10 +59,10 @@ for (POPNAME in c("Baka","Nzime","BaKola","Ngumba","AkaMbati","BaKiga","BaTwa","
                     "BantuKenya","BantuTswana","Biaka","Dinka","Esan","Gambian","Igbo","Juhoansi_comp","Khomani","Lemande","Luhya","Luo","Mandenka","Maasai","Mbuti",
                     "Mende","Mozabite","Saharawi","Yoruba","DaiChinese","Karitiana","Papuan","French","CEU","Coloured","SothoSpeakers","XhosaSpeakers","Juhoansi_comp_noHGDP",
                     "Dinka_noHGDP","French_noHGDP","Papuan_noHGDP","Yoruba_noHGDP","Mbuti_noHGDP","Mandenka_noHGDP","Karitiana_noHGDP","DaiChinese_noHGDP")) {
-                    pop <- data[data$POPNAME==POP,]
+                    pop <- data[data$POPNAME==POPNAME,]
                     avg_het <- sum(pop$H_E_ALLSITES*pop$N_TOT_IN_POP)/sum(pop$N_TOT_IN_POP)
                     avg_unbiased_het <- sum(pop$H_E_UNBIASED_ALLSITES*pop$N_TOT_IN_POP)/sum(pop$N_TOT_IN_POP)
-                    write.table(file="allpop_avg_het_1-22",append=TRUE,t(c(POP,avg_het,avg_unbiased_het,sum(pop$N_TOT_IN_POP))),row.names = FALSE, col.names = FALSE)
+                    write.table(file="allpop_avg_het_1-22",append=TRUE,t(c(POPNAME,avg_het,avg_unbiased_het,sum(pop$N_TOT_IN_POP))),row.names = FALSE,col.names = FALSE)
 }
 
 ##### X CHROMOSOME
