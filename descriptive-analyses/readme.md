@@ -28,6 +28,10 @@ plink
   --out outprefix
 ```
 
+## ASD and MDS
+
+We computed the ASD matrix with the `asd` software. Prior to that, the data was filtered for LD. (plink indeppairwise 50 5 0.1)
+
 - [ ] Add code for plotting ROH
 - [ ] Add code for plotting variant counts
 - [ ] Check the code for plotting heterozygosity - it will need to be updated most likely
