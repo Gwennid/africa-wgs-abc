@@ -1,2 +1,2 @@
 # africa-wgs-abc
-This repository contains information underlying the ABC analyses performed on whole-genome sequencing data from Central and Southern African populations. The processing and descriptive analyses of that data is described in another repo, `africa-wgs-descriptive`.
+This repository contains information underlying the ABC analyses performed on whole-genome sequencing data from Central and Southern African populations (Ancient tree-topologies and gene-flow processes among human lineages in Africa, Breton et al.). The processing and descriptive analyses of that data is described in another repo, `africa-wgs-descriptive`. This repository contains the code for the [simulations](fsc-simulations), including the genetic and demographic models; and [QC](QC).
