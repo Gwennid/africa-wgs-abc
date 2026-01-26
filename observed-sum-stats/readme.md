@@ -2,7 +2,7 @@
 
 Note that the scripts provided here were written to run on a cluster and hence all paths would need to be updated in order to run.
 
-The entire process is done via the script `observed-sum-stats/select-n-windows_calculate-sumstats_5Ju-5Ka-5NP-5WP-5EP.sh`. This is a template that requires adjustments to run, in particular the paths, name of the population combination and individual names (replace the variable "PLACEHOLDER" by a list of 15 individuals corresponding to 5 wRHG, 5 eRHG and 5 RHGn. This script calls to a number of scripts that are provided in `observed-sum-stats/helper_scripts`.
+The entire process is done via the script [select-n-windows_calculate-sumstats_5Ju-5Ka-5NP-5WP-5EP.sh](observed-sum-stats/select-n-windows_calculate-sumstats_5Ju-5Ka-5NP-5WP-5EP.sh). This is a template that requires adjustments to run, in particular the paths, name of the population combination and individual names (replace the variable `PLACEHOLDER` by a list of 15 individuals corresponding to 5 wRHG, 5 eRHG and 5 RHGn). This script calls to a number of [helper scripts](observed-sum-stats/helper_scripts).
 
 ## Select genomic regions
 
