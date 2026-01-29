@@ -1,7 +1,6 @@
 # QC ABC
 
-We performed checks at various stages of our ABC analyses. In this folder we gathered files relevant to testing different aspects of our ABC framework.
-The files used to validate the main results of the article (for example test inherent to the ABC-RF model choice procedure) can be found in the folders corresponding to the analyses in question, one level up.
+We performed checks at various stages of our ABC analyses. In this folder we gathered files relevant to testing different aspects of our ABC framework. These checks are not included in the manuscript.
 
 The following QC were performed:
 
